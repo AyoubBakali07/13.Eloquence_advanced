@@ -10,19 +10,21 @@
         <div id="pie-chart"></div>
     </div> <!-- /.col -->
     <!-- Cards with Numbers -->
-    <div class="col-4">
+    <div class="col-3">
         <!-- Card for Articles -->
         <div class="card shadow-sm mb-3">
             <div class="card-body">
                 <h5 class="card-title">Articles</h5>
-                <p class="card-text"><strong>{{ $ArticleCount }}</strong></p>
+               <p class="card-text"><strong>{{ $ArticleCount }}</strong></p>
             </div>
         </div>
         <!-- Card for Users -->
         <div class="card shadow-sm mb-3">
             <div class="card-body">
-                <h5 class="card-title">Users</h5>
-                <p class="card-text"><strong>{{ $UserCount }}</strong></p>
+                <h5 class="card-title ">Users</h5>
+                <p class="card-text">
+                    <strong> {{ $UserCount }}</strong>
+                </p>
             </div>
         </div>
         <!-- Card for Comments -->
@@ -31,14 +33,13 @@
                 <h5 class="card-title">Comments</h5>
                 <p class="card-text"><strong>{{ $CommentCount }}</strong></p>
             </div>
-        </div>
-    </div> <!-- /.col -->
+        </div> <!-- /.col -->
 </div> <!-- /.row -->
 <!-- End Chart Row -->
 
 <script>
     const pie_chart_options = {
-        series: [700, 50, 400],
+        series: [100, 3, 5],
         chart: {
             type: "donut",
         },

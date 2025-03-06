@@ -20,6 +20,5 @@ class AdminSeeder extends Seeder
             'password' => 'password']);
         $user->assignRole('admin');
 
-       
     }
 }

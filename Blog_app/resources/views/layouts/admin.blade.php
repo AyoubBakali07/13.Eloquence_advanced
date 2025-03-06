@@ -23,6 +23,12 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                
+                {{-- <select id="language-select">
+                    <option value="{{ url('/lang/en') }}" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
+                    <option value="{{ url('/lang/fr') }}" {{ app()->getLocale() == 'fr' ? 'selected' : '' }}>Français</option>
+                    <option value="{{ url('/lang/ar') }}" {{ app()->getLocale() == 'ar' ? 'selected' : '' }}>العربية</option>
+                </select> --}}
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto">

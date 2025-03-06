@@ -6,6 +6,8 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 
 Auth::routes();
 
@@ -30,6 +32,8 @@ Route::middleware('auth' , 'role:admin')->group(function () {
     Route::get('/create', [TagController::class, 'create'])->name('tags.create');
     Route::post('/store', [TagController::class, 'store'])->name('tags.store');
     Route::delete('/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
+    // Route::get('change', [LanguageController::class, 'change'])->name("lang.change");
+
 });
 
   Route::prefix('categories')->group(function () {
@@ -43,3 +47,11 @@ Route::middleware('auth' , 'role:admin')->group(function () {
 
 Route::get('/',[ ArticleController::class , 'index'])->name('public.index');
 Route::get('/{article}',[ ArticleController::class , 'show'])->name('public.show');
+
+// Route::get('/lang/{locale}', function ($locale) { 
+//   if (in_array($locale, ['en', 'ar', 'fr'])) { 
+//       Session::put('locale', $locale); 
+//       App::setLocale($locale);
+//   } 
+//   return redirect()->back(); 
+// });
