@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Article;
+use App\Policies\ArticlePolicy;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
@@ -27,4 +29,7 @@ class AppServiceProvider extends ServiceProvider
         }
         Paginator::useBootstrap();
     }
+    protected $policies =[
+        Article::class => ArticlePolicy::class,
+    ];
 }

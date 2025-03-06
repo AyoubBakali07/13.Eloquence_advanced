@@ -168,6 +168,7 @@ class ArticleController extends Controller
 
     $article->tags()->sync($validated['tags'] ?? []);
 
+    $this->authorize('edit', $article);
     return redirect()->route('articles.index')->with('success', 'L\'article a bien été modifié');
   }
 
