@@ -23,7 +23,13 @@ class RolePermissionSeeder extends Seeder
 
         $user = User::find(1);
         $user->assignRole('admin');
+        // $user = User::find(1)?->assignRole('admin');
+
+        $user =User::find(2);
+        $user->assignRole('admin');
+        // $user =User::find(2)?->assignRole('admin');
     
-        $admin->givePermissionTo(['edit Article plans', 'edit']);
+        $admin->givePermissionTo(['edit']);
+        // $admin->givePermissionTo(['edit Article plans', 'edit']);
         }
 }

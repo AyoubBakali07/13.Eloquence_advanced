@@ -18,7 +18,9 @@ class AdminSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => 'password']);
+
         $user->assignRole('admin');
+        // $user->syncRoles('admin');
 
     }
 }

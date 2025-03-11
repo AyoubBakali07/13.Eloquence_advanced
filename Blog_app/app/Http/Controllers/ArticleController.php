@@ -101,7 +101,9 @@ class ArticleController extends Controller
       $validated = $request->validated();
       $validated['user_id']=Auth::id();
       $validated["category_id"] = $request->category;
+      
     $article = Article::create($validated);
+
     // Attach selected tags
     $article->tags()->attach(id: $validated['tags'] ?? []);
     // $article->tags()->attach( $request->tags);
