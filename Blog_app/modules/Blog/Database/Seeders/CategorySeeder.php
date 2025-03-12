@@ -1,12 +1,12 @@
 <?php
 
-namespace Database\Seeders;
+namespace Modules\Blog\Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
+use Modules\Blog\Models\Category;
 
-class RoleSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         //
-        Role::create(['name' => 'admin']);
+        Category::factory()->count(20)->create();
     }
 }

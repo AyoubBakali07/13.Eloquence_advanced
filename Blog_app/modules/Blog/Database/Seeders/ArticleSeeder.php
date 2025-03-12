@@ -1,19 +1,18 @@
 <?php
 
-namespace Database\Seeders;
+namespace Modules\Blog\Database\Seeders;
 
+use Modules\Blog\Models\Article;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Category;
 
-class CategorySeeder extends Seeder
+class ArticleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        //
-        Category::factory()->count(20)->create();
+        Article::factory()->count(100)->create();
     }
 }

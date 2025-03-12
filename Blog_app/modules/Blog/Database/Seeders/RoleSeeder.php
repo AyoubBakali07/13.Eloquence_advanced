@@ -1,12 +1,12 @@
 <?php
 
-namespace Database\Seeders;
+namespace Modules\Blog\Database\Seeders;
 
-use App\Models\Tag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
-class TagSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class TagSeeder extends Seeder
     public function run(): void
     {
         //
-        Tag::factory()->count(10)->create();
+        // Role::create(['name' => 'admin']);
     }
 }

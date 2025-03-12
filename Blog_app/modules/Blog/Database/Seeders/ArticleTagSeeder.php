@@ -1,10 +1,10 @@
 <?php
 
-namespace Database\Seeders;
+namespace Modules\Blog\Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Article;
-use App\Models\Tag;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class ArticleTagSeeder extends Seeder
