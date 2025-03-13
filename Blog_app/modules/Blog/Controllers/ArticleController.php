@@ -55,9 +55,9 @@ class ArticleController extends Controller
 
 
     if (Auth::check() && Auth::user()->roles->contains('name', 'admin')) {
-      return view('admin.article.index', compact('articles', 'categories', 'tags','ArticleCount','CommentCount', 'UserCount' ));
+      return view('Blog::admin.article.index', compact('articles', 'categories', 'tags','ArticleCount','CommentCount', 'UserCount' ));
     } else {
-      return view('public.index', compact('articles', 'categories', 'tags'));
+      return view('Blog::public.index', compact('articles', 'categories', 'tags'));
     }
   }
 
@@ -67,13 +67,13 @@ class ArticleController extends Controller
   public function create()
   {
     if (!Auth::check() || !Auth::user()->roles->contains('name', 'admin')) {
-      return redirect()->route('articles.index');
+      return redirect()->route('Blog::articles.index');
     }
 
     $categories = CategoryBlog::all();
     $allTags = TagBlog::all();
 
-    return view('admin.article.create', compact('categories', 'allTags'));
+    return view('Blog::admin.article.create', compact('categories', 'allTags'));
   }
 
   /**
@@ -108,7 +108,7 @@ class ArticleController extends Controller
     $article->tags()->attach(id: $validated['tags'] ?? []);
     // $article->tags()->attach( $request->tags);
 
-    return redirect()->route('articles.index')->with('success', 'L\'article a bien été créé');
+    return redirect()->route('Blog::articles.index')->with('success', 'L\'article a bien été créé');
   }
 
   /**
@@ -121,9 +121,9 @@ class ArticleController extends Controller
     $commentableType = Article::class;
 
     if (Auth::check() && Auth::user()->roles->contains('name', 'admin')) {
-      return view('admin.article.show', compact('article', 'commentableId', 'commentableType'));
+      return view('Blog::admin.article.show', compact('article', 'commentableId', 'commentableType'));
     } else {
-      return view('public.show', compact('article', 'commentableId', 'commentableType'));
+      return view('Blog::public.show', compact('article', 'commentableId', 'commentableType'));
     }
   }
 
@@ -133,7 +133,7 @@ class ArticleController extends Controller
   public function edit($id)
   {
     if (!Auth::check() || !Auth::user()->roles->contains('name', 'admin')) {
-      return redirect()->route('articles.index');
+      return redirect()->route('Blog::articles.index');
     }
 
     $article = Article::findOrFail($id);
@@ -141,7 +141,7 @@ class ArticleController extends Controller
     $allTags = TagBlog::all();
     $selectedTags = $article->tags->pluck('id')->toArray();
 
-    return view('admin.article.edit', compact('article', 'categories', 'allTags', 'selectedTags'));
+    return view('Blog::admin.article.edit', compact('article', 'categories', 'allTags', 'selectedTags'));
   }
 
   /**
@@ -150,7 +150,7 @@ class ArticleController extends Controller
   public function update(ArticleRequest $request, $id)
   {
     if (!Auth::check() || !Auth::user()->roles->contains('name', 'admin')) {
-      return redirect()->route('articles.index');
+      return redirect()->route('Blog::articles.index');
     }
 
     $validated = $request->validate([
@@ -171,7 +171,7 @@ class ArticleController extends Controller
     $article->tags()->sync($validated['tags'] ?? []);
 
     $this->authorize('edit', $article);
-    return redirect()->route('articles.index')->with('success', 'L\'article a bien été modifié');
+    return redirect()->route('Blog::articles.index')->with('success', 'L\'article a bien été modifié');
   }
 
   /**
@@ -180,11 +180,11 @@ class ArticleController extends Controller
   public function destroy(string $id)
   {
     if (!Auth::check() || !Auth::user()->roles->contains('name', 'admin')) {
-      return redirect()->route('articles.index');
+      return redirect()->route('Blog::articles.index');
     }
 
     $article = Article::where('id', $id);
     $article->delete();
-    return redirect()->route('articles.index')->with('success', 'L\'article a bien été supprimé');
+    return redirect()->route('Blog::articles.index')->with('success', 'L\'article a bien été supprimé');
   }
 }

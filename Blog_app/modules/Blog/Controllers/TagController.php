@@ -19,7 +19,7 @@ class TagController extends Controller
     }
 
     $tags = $query->paginate(10);
-    return view('admin.tag.index', compact('tags'));
+    return view('blog::admin.tag.index', compact('tags'));
   }
 
   /**
@@ -27,7 +27,7 @@ class TagController extends Controller
    */
   public function create()
   {
-    return view('admin.tag.create');
+    return view('blog::admin.tag.create');
   }
 
   /**
@@ -43,7 +43,7 @@ class TagController extends Controller
     $tag->name = $request->name;
     $tag->save();
 
-    return redirect()->route('tags.index')->with('success', 'Le tag a bien été créé');
+    return redirect()->route('blog::tags.index')->with('success', 'Le tag a bien été créé');
   }
 
   /**
@@ -55,6 +55,6 @@ class TagController extends Controller
     $tag = TagBlog::findOrFail($id);
     $tag->delete();
 
-    return redirect()->route('tags.index')->with('success', 'Le tag a bien été supprimé');
+    return redirect()->route('blog::tags.index')->with('success', 'Le tag a bien été supprimé');
   }
 }

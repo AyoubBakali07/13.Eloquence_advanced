@@ -19,7 +19,7 @@ class CategoryController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
         $categories = $query->paginate(10);
-        return view('admin.category.index', compact('categories'));
+        return view('blog::admin.category.index', compact('categories'));
         
     }
 
@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('blog::admin.category.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class CategoryController extends Controller
         $category= new CategoryBlog();
         $category->name = $request->name ;
         $category->save();
-        return redirect()->route('categories.index')->with('success', 'Catégorie créée avec succès');
+        return redirect()->route('blog::categories.index')->with('success', 'Catégorie créée avec succès');
     }
 
     /**
@@ -78,6 +78,6 @@ class CategoryController extends Controller
         //
         $category = CategoryBlog::where('id', $id)->first();
         $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Catégorie supprimée avec succès');
+        return redirect()->route('blog::categories.index')->with('success', 'Catégorie supprimée avec succès');
     }
 }
