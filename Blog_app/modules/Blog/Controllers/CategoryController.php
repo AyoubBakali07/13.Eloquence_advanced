@@ -2,7 +2,7 @@
 
 namespace Modules\Blog\Controllers;
 
-use Modules\Blog\Models\Category;
+use Modules\Blog\Models\CategoryBlog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         //
-        $query = Category::query();
+        $query = CategoryBlog::query();
         if($request->has('search') && $request->search != ''){
             $query->where('name', 'like', '%' . $request->search . '%');
         }
@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
-        $category= new Category();
+        $category= new CategoryBlog();
         $category->name = $request->name ;
         $category->save();
         return redirect()->route('categories.index')->with('success', 'Catégorie créée avec succès');
@@ -76,7 +76,7 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         //
-        $category = Category::where('id', $id)->first();
+        $category = CategoryBlog::where('id', $id)->first();
         $category->delete();
         return redirect()->route('categories.index')->with('success', 'Catégorie supprimée avec succès');
     }

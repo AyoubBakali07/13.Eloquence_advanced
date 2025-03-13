@@ -4,11 +4,11 @@ namespace Modules\Blog\Controllers;
 
 use App\Http\Requests\ArticleRequest;
 use Modules\Blog\Models\Article;
-use Modules\Blog\Models\Category;
+use Modules\Blog\Models\CategoryBlog;
 use Modules\Blog\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Modules\Blog\Models\Tag;
+use Modules\Blog\Models\TagBlog;
 use Modules\Blog\Models\User;
 
 class ArticleController extends Controller
@@ -50,8 +50,8 @@ class ArticleController extends Controller
 
     // Ajouter les paramètres de filtrage à la pagination
     $articles->appends($request->all());
-    $categories = \App\Models\Category::all();
-    $tags = \App\Models\Tag::all();
+    $categories = CategoryBlog::all();
+    $tags = TagBlog::all();
 
 
     if (Auth::check() && Auth::user()->roles->contains('name', 'admin')) {
@@ -70,8 +70,8 @@ class ArticleController extends Controller
       return redirect()->route('articles.index');
     }
 
-    $categories = Category::all();
-    $allTags = Tag::all();
+    $categories = CategoryBlog::all();
+    $allTags = TagBlog::all();
 
     return view('admin.article.create', compact('categories', 'allTags'));
   }
@@ -137,8 +137,8 @@ class ArticleController extends Controller
     }
 
     $article = Article::findOrFail($id);
-    $categories = Category::all();
-    $allTags = Tag::all();
+    $categories = CategoryBlog::all();
+    $allTags = TagBlog::all();
     $selectedTags = $article->tags->pluck('id')->toArray();
 
     return view('admin.article.edit', compact('article', 'categories', 'allTags', 'selectedTags'));

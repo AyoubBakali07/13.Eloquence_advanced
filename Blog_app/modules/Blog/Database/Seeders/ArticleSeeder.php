@@ -13,6 +13,13 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        Article::factory()->count(100)->create();
+        // Article::factory()->count(10)->create();
+        $article = Article::create([
+            'title' => 'Admin',
+            'content' => 'admin@gmail.com',
+            'user_id' => 1,
+            'category_id' => 1,
+            
+            ]);
     }
 }

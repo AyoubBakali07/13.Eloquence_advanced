@@ -4,7 +4,7 @@ namespace Modules\Blog\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Modules\Blog\Models\Tag;
+use Modules\Blog\Models\TagBlog;
 
 class TagController extends Controller
 {
@@ -13,7 +13,7 @@ class TagController extends Controller
    */
   public function index(Request $request)
   {
-    $query = Tag::query();
+    $query = TagBlog::query();
     if($request->has('search') && $request->search != ''){
       $query->where('name', 'like', '%' . $request->search . '%');
     }
@@ -39,7 +39,7 @@ class TagController extends Controller
       'name' => 'required|string|max:255',
     ]);
 
-    $tag = new Tag();
+    $tag = new TagBlog();
     $tag->name = $request->name;
     $tag->save();
 
@@ -52,7 +52,7 @@ class TagController extends Controller
   public function destroy(string $id)
   {
 
-    $tag = Tag::findOrFail($id);
+    $tag = TagBlog::findOrFail($id);
     $tag->delete();
 
     return redirect()->route('tags.index')->with('success', 'Le tag a bien été supprimé');
